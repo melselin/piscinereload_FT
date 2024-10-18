@@ -1,10 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_sort_params.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mwelfrin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/17 08:30:55 by mwelfrin          #+#    #+#             */
+/*   Updated: 2024/10/18 09:51:58 by mwelfrin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
+
+void	ft_putchar(char c);
 
 void	ft_putstr(char *str)
 {
 	while (*str)
 	{
-		write(1, str, 1);
+		ft_putchar(*str);
 		str++;
 	}
 }
@@ -52,7 +66,7 @@ int	main(int argc, char **argv)
 	while (i < argc)
 	{
 		ft_putstr(argv[i]);
-		write(1, "\n", 1);
+		ft_putchar('\n');
 		i++;
 	}
 	return (0);

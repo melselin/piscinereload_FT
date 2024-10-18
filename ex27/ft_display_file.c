@@ -1,36 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_params.c                                  :+:      :+:    :+:   */
+/*   ft_display_file.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mwelfrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/17 08:29:58 by mwelfrin          #+#    #+#             */
-/*   Updated: 2024/10/17 12:58:08 by mwelfrin         ###   ########.fr       */
+/*   Created: 2024/10/18 12:18:16 by mwelfrin          #+#    #+#             */
+/*   Updated: 2024/10/18 12:18:25 by mwelfrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
-
-void	ft_putchar(char c);
+#include <fcntl.h>
+#define BUFFER_SIZE 4096
 
 int	main(int argc, char **argv)
 {
-	int	a;
-	int	i;
+	char	buffer[BUFFER_SIZE];
+	int		fd;
+	int		ret;
 
-	a = 1;
-	while (a < argc)
+	if (argc < 2)
 	{
-		i = 0;
-		while (argv[a][i])
-		{
-			ft_putchar(argv[a][i]);
-			i++;
-		}
-		ft_putchar('\n');
-		a++;
+		write(1, "File name missing.\n", 19);
+		return (1);
 	}
+	if (argc > 2)
+	{
+		write(1, "Too many arguments.\n", 20);
+		return (1);
+	}
+	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+	{
+		write(1, "Cannot read file.\n", 18);
+		return (1);
+	}
+	ret = read(fd, buffer, BUFFER_SIZE);
+	write(1, buffer, ret);
+	close(fd);
 	return (0);
 }
-//compile with gcc -o name ftname.c
-//run with ./name arg1 arg2 argwhatever 

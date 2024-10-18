@@ -1,14 +1,28 @@
-int ft_count_if(char **tab, int (*f)(char*)) {
-    int i = 0;
-    int count = 0;
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_count_if.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mwelfrin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/17 08:57:22 by mwelfrin          #+#    #+#             */
+/*   Updated: 2024/10/17 10:32:51 by mwelfrin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+int	ft_count_if(char **tab, int (*f)(char*))
+{
+	int	i;
+	int	count;
 
-    while (tab[i] != 0) {
-        if (f(tab[i]) == 1) {  
-            count++;
-        }
-        i++;
-    }
-
-    return count;
+	i = 0;
+	count = 0;
+	while (tab[i] != 0)
+	{
+		if (f(tab[i]) == 1)
+		{
+			count++;
+		}
+		i++;
+	}
+	return (count);
 }
-
